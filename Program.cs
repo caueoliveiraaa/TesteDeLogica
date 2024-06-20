@@ -1,4 +1,5 @@
 ﻿using TesteDeLogica.Services;
+using System;
 
 namespace TesteDeLogica
 {
@@ -6,11 +7,11 @@ namespace TesteDeLogica
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Program has started!");
+            Console.WriteLine("Program has started.");
 
-            var network = new Network(8);
+            var network = new Network(10);
 
-            Console.WriteLine("Program has ended!");
+            Console.WriteLine("Program has ended.");
         }
     }
 }
