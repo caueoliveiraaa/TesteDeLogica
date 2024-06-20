@@ -1,9 +1,16 @@
-﻿namespace TesteDeLogica;
+﻿using TesteDeLogica.Services;
 
-class Program
+namespace TesteDeLogica
 {
-    static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine("Hello, World!");
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Program has started!");
+
+            var network = new Network(8);
+
+            Console.WriteLine("Program has ended!");
+        }
     }
 }
