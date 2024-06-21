@@ -17,7 +17,7 @@
 - O comando para rodar o desafio via PowerShell é ***dotnet run*** dentro do dir TesteDeLogica.
 
 ----
-# - Logic test with C#️ (English)
+# - Logical test with C#️ (English)
 
 ## About the project:
 - This challenge has been taken to validate my C# ***skills***.
