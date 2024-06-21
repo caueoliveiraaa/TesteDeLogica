@@ -7,31 +7,33 @@ namespace TesteDeLogica
     {
         static void Main(string[] args)
         {
-            Network networkFirstIntance = new Network(10);
+            Network networkFirstTest = new Network(10);
 
-            networkFirstIntance.Connect(2, 4);
-            networkFirstIntance.Query(2, 4);
-            networkFirstIntance.Connect(2, 8);
-            networkFirstIntance.Query(2, 8);
-            networkFirstIntance.Connect(2, 6);
-            networkFirstIntance.Query(2, 6);
-            networkFirstIntance.Connect(3, 1);
-            networkFirstIntance.Query(3, 1);
-            networkFirstIntance.Connect(3, 2);
-            networkFirstIntance.Query(3, 2);
-            networkFirstIntance.ShowAllElements();
+            networkFirstTest.Connect(2, 4);
+            networkFirstTest.Query(2, 4);
+            networkFirstTest.Connect(2, 8);
+            networkFirstTest.Query(2, 8);
+            networkFirstTest.Connect(2, 6);
+            networkFirstTest.Query(2, 6);
+            networkFirstTest.Connect(3, 1);
+            networkFirstTest.Query(3, 1);
+            networkFirstTest.Connect(3, 2);
+            networkFirstTest.Query(3, 2);
+            networkFirstTest.ShowAllElements();
 
-            Network networkSecondIntance = new Network(8);
+            Network networkSecondTest = new Network(8);
 
-            networkSecondIntance.Connect(1, 6);
-            networkSecondIntance.Query(1, 6);
-            networkSecondIntance.Connect(1, 2);
-            networkSecondIntance.Query(1, 2);
-            networkSecondIntance.Connect(2, 4);
-            networkSecondIntance.Query(2, 4);
-            networkSecondIntance.Connect(5, 7);
-            networkSecondIntance.Query(5, 7);
-            networkSecondIntance.ShowAllElements();
+            networkSecondTest.Connect(1, 6);
+            networkSecondTest.Query(1, 6);
+            networkSecondTest.Connect(1, 2);
+            networkSecondTest.Query(1, 2);
+            networkSecondTest.Connect(2, 4);
+            networkSecondTest.Query(2, 4);
+            networkSecondTest.Connect(5, 7);
+            networkSecondTest.Query(5, 7);
+            networkSecondTest.Connect(8, 3);
+            networkSecondTest.Query(3, 8);
+            networkSecondTest.ShowAllElements();
         }
     }
 }

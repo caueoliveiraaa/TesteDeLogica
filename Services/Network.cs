@@ -5,23 +5,23 @@ namespace TesteDeLogica.Services
 {
     public class Network 
     {
-        private int _numberOfElements;
+        private int _elementsAmount;
         private Dictionary<int, List<int>> _elements; 
 
-        public Network(int numberOfElements)
+        public Network(int elementsAmount)
         {
-            if (numberOfElements <= 1)
+            if (elementsAmount <= 1)
                 throw new ArgumentException("At least two elements are necessary to make connections.");
             
-            _numberOfElements = numberOfElements;
+            _elementsAmount = elementsAmount;
             _elements = new Dictionary<int, List<int>>();
             
-            AddAllElements();
+            SetUpAllElements();
         }
 
-        private void AddAllElements()
+        private void SetUpAllElements()
         {
-            for (int e = 0; e < _numberOfElements; e++)
+            for (int e = 0; e < _elementsAmount; e++)
                 _elements[e + 1] = new List<int>();
         }
 
@@ -34,7 +34,7 @@ namespace TesteDeLogica.Services
             }
         }
 
-        private void VerifyIfConnectionExists(int firstElement, int secondElement)
+        private void ValidateNewConnection(int firstElement, int secondElement)
         {
             ValidateElements( new List<int>() { firstElement, secondElement } );
 
@@ -42,7 +42,7 @@ namespace TesteDeLogica.Services
                 throw new ArgumentException($"The connection between {firstElement} and {secondElement} already exists.");
         }
 
-        private void BridgeConnections(int firstElement, int secondElement)
+        private void JoinConnections(int firstElement, int secondElement)
         {
             List<int> firstElementConnections = _elements[firstElement];
             
@@ -69,13 +69,13 @@ namespace TesteDeLogica.Services
 
         public void Connect(int firstElement, int secondElement)
         {
-            VerifyIfConnectionExists(firstElement, secondElement);
-            BridgeConnections(firstElement, secondElement);
+            ValidateNewConnection(firstElement, secondElement);
+            JoinConnections(firstElement, secondElement);
 
             _elements[firstElement].Add(secondElement);
             _elements[secondElement].Add(firstElement);
 
-            Console.WriteLine($"Connect: {firstElement} and {secondElement} = successfully.");
+            Console.WriteLine($"Connect: {firstElement} and {secondElement} = OK.");
         }
 
         public bool Query(int firstElement, int secondElement)
@@ -91,8 +91,6 @@ namespace TesteDeLogica.Services
 
         public void ShowAllElements()
         {
-            Console.WriteLine($"\nAll connections of current instance:");
-
             foreach (var keyAndValues in _elements)
                 Console.WriteLine($"Element: {keyAndValues.Key}, connections made: {string.Join(", ", keyAndValues.Value)}");
         }
