@@ -33,23 +33,26 @@ namespace TesteDeLogica.Services
                 Console.WriteLine($"Element: {kvp.Key}, connections: {string.Join(", ", kvp.Value)}");
         }
 
-        private void ValidateElement(int element)
+        private void ValidateElements(List<int> elements)
         {
-            if (!_elements.ContainsKey(element))
-                throw new ArgumentException("Element does not exist in this instance.");
+            foreach(var element in elements)
+            {
+                if (!_elements.ContainsKey(element))
+                    throw new ArgumentException("Element does not exist in this instance.");
+            }
         }
 
         private void ValidateConnection(int firstElement, int secondElement)
         {
-            ValidateElement(firstElement);
+            ValidateElements( new List<int>() { firstElement, secondElement } );
 
             if (_elements[firstElement].Contains(secondElement))
                 throw new ArgumentException($"The connection between {firstElement} and {secondElement} already exists.");
         }
 
-        private void BridgeConnections(int firstElement, int secondElement) 
+        private void BridgeConnections(int firstElement, int secondElement)
         {
-
+            
         }
 
         public void Connect(int firstElement, int secondElement)
@@ -57,11 +60,15 @@ namespace TesteDeLogica.Services
             ValidateConnection(firstElement, secondElement);
 
             _elements[firstElement].Add(secondElement);
+
+            Console.WriteLine($"The connection between {firstElement} and {secondElement} was created successfully.");
         }
 
         public bool Query(int firstElement, int secondElement)
         {
-            ValidateElement(firstElement);
+            ValidateElements( new List<int>() { firstElement, secondElement } );
+
+            Console.WriteLine($"Query: {firstElement} is connected to {secondElement} = {_elements[firstElement].Contains(secondElement)}");
 
             return _elements[firstElement].Contains(secondElement);
         }
