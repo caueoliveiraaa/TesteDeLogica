@@ -42,7 +42,7 @@ namespace TesteDeLogica.Services
                 throw new ArgumentException($"The connection between {firstElement} and {secondElement} already exists.");
         }
 
-        private void JoinConnections(int firstElement, int secondElement)
+        private void JoinAllConnections(int firstElement, int secondElement)
         {
             List<int> firstConnections = _elements[firstElement];
             List<int> secondConnections = _elements[secondElement];
@@ -69,7 +69,7 @@ namespace TesteDeLogica.Services
         public void Connect(int firstElement, int secondElement)
         {
             ValidateNewConnection(firstElement, secondElement);
-            JoinConnections(firstElement, secondElement);
+            JoinAllConnections(firstElement, secondElement);
 
             _elements[firstElement].Add(secondElement);
             _elements[secondElement].Add(firstElement);
@@ -88,7 +88,7 @@ namespace TesteDeLogica.Services
             return connectionExists;
         }
 
-        public void ShowAllElements()
+        public void DisplayAllElements()
         {
             foreach (var keyAndValues in _elements)
                 Console.WriteLine($"Element: {keyAndValues.Key}, connections made: {string.Join(", ", keyAndValues.Value)}");
