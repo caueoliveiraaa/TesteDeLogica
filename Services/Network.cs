@@ -33,13 +33,23 @@ namespace TesteDeLogica.Services
                 Console.WriteLine($"Element: {kvp.Key}, connections: {string.Join(", ", kvp.Value)}");
         }
 
+        private void ValidateElement(int element)
+        {
+            if (!_elements.ContainsKey(element))
+                throw new ArgumentException("Element does not exist in this instance.");
+        }
+
         private void ValidateConnection(int firstElement, int secondElement)
         {
-            if (!_elements.ContainsKey(firstElement))
-                throw new ArgumentException("Element does not exist in this instance.");
+            ValidateElement(firstElement);
 
             if (_elements[firstElement].Contains(secondElement))
                 throw new ArgumentException($"The connection between {firstElement} and {secondElement} already exists.");
+        }
+
+        private void BridgeConnections(int firstElement, int secondElement) 
+        {
+
         }
 
         public void Connect(int firstElement, int secondElement)
@@ -47,13 +57,13 @@ namespace TesteDeLogica.Services
             ValidateConnection(firstElement, secondElement);
 
             _elements[firstElement].Add(secondElement);
-
-            Console.WriteLine($"The connection between {firstElement} and {secondElement} created successfully.");
         }
 
         public bool Query(int firstElement, int secondElement)
         {
-            return true;
+            ValidateElement(firstElement);
+
+            return _elements[firstElement].Contains(secondElement);
         }
     }
 }
