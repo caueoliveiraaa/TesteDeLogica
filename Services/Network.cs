@@ -22,24 +22,36 @@ namespace TesteDeLogica.Services
         private void AddAllElements()
         {
             for (int e = 0; e < _numberOfElements; e++)
-            {
-                _elements[e] = new List<int>();
-            }
+                _elements[e + 1] = new List<int>();
+
+            ShowAllElements();
         }
 
-        private void ValidateElement()
+        private void ShowAllElements()
         {
-            if (!_elements.Any())
-                throw new ArgumentException("There are not elements to validate.");
-            
+            foreach (var kvp in _elements)
+                Console.WriteLine($"Element: {kvp.Key}, connections: {string.Join(", ", kvp.Value)}");
+        }
+
+        private void ValidateConnection(int firstElement, int secondElement)
+        {
+            if (!_elements.ContainsKey(firstElement))
+                throw new ArgumentException("Element does not exist in this instance.");
+
+            if (_elements[firstElement].Contains(secondElement))
+                throw new ArgumentException($"The connection between {firstElement} and {secondElement} already exists.");
         }
 
         public void Connect(int firstElement, int secondElement)
         {
+            ValidateConnection(firstElement, secondElement);
 
+            _elements[firstElement].Add(secondElement);
+
+            Console.WriteLine($"The connection between {firstElement} and {secondElement} created successfully.");
         }
 
-        public bool Query(int firstQueryElement, int secondQueryElement)
+        public bool Query(int firstElement, int secondElement)
         {
             return true;
         }

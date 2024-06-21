@@ -11,6 +11,8 @@ namespace TesteDeLogica
 
             var network = new Network(10);
 
+            network.Connect(2, 4);
+
             Console.WriteLine("Program has ended.");
         }
     }
