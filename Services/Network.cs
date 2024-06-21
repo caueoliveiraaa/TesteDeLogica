@@ -11,7 +11,7 @@ namespace TesteDeLogica.Services
         public Network(int numberOfElements)
         {
             if (numberOfElements <= 1)
-                throw new ArgumentException("At least two elements are necessary to instantiate an object.");
+                throw new ArgumentException("At least two elements are necessary to make connections.");
             
             _numberOfElements = numberOfElements;
             _elements = new Dictionary<int, List<int>>();
@@ -30,7 +30,7 @@ namespace TesteDeLogica.Services
             foreach(var element in elements)
             {
                 if (!_elements.ContainsKey(element))
-                    throw new ArgumentException("Element does not exist in this instance.");
+                    throw new ArgumentException($"Element {element} does not exist.");
             }
         }
 
@@ -91,8 +91,10 @@ namespace TesteDeLogica.Services
 
         public void ShowAllElements()
         {
+            Console.WriteLine($"\nAll connections of current instance:");
+
             foreach (var keyAndValues in _elements)
-                Console.WriteLine($"Element: {keyAndValues.Key}, connections: {string.Join(", ", keyAndValues.Value)}");
+                Console.WriteLine($"Element: {keyAndValues.Key}, connections made: {string.Join(", ", keyAndValues.Value)}");
         }
     }
 }

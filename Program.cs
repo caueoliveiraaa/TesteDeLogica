@@ -23,8 +23,14 @@ namespace TesteDeLogica
 
             Network networkSecondIntance = new Network(8);
 
+            networkSecondIntance.Connect(1, 6);
+            networkSecondIntance.Query(1, 6);
+            networkSecondIntance.Connect(1, 2);
+            networkSecondIntance.Query(1, 2);
             networkSecondIntance.Connect(2, 4);
             networkSecondIntance.Query(2, 4);
+            networkSecondIntance.Connect(5, 7);
+            networkSecondIntance.Query(5, 7);
             networkSecondIntance.ShowAllElements();
         }
     }
