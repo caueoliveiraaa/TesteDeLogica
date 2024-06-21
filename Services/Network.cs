@@ -44,26 +44,25 @@ namespace TesteDeLogica.Services
 
         private void JoinConnections(int firstElement, int secondElement)
         {
-            List<int> firstElementConnections = _elements[firstElement];
+            List<int> firstConnections = _elements[firstElement];
+            List<int> secondConnections = _elements[secondElement];
             
-            for (int i = 0; i < firstElementConnections.Count; i++)
+            for (int i = 0; i < firstConnections.Count; i++)
             {
-                if (!_elements[secondElement].Contains(firstElementConnections[i]))
-                    _elements[secondElement].Add(firstElementConnections[i]);
+                if (!_elements[secondElement].Contains(firstConnections[i]))
+                    _elements[secondElement].Add(firstConnections[i]);
 
-                if (!_elements[firstElementConnections[i]].Contains(secondElement))
-                    _elements[firstElementConnections[i]].Add(secondElement);
+                if (!_elements[firstConnections[i]].Contains(secondElement))
+                    _elements[firstConnections[i]].Add(secondElement);
             }
-
-            List<int> secondElementConnections = _elements[secondElement];
             
-            for (int i = 0; i < secondElementConnections.Count; i++)
+            for (int i = 0; i < secondConnections.Count; i++)
             {
-                if (!_elements[firstElement].Contains(secondElementConnections[i]))
-                    _elements[firstElement].Add(secondElementConnections[i]);
+                if (!_elements[firstElement].Contains(secondConnections[i]))
+                    _elements[firstElement].Add(secondConnections[i]);
 
-                if (!_elements[secondElementConnections[i]].Contains(firstElement))
-                    _elements[secondElementConnections[i]].Add(firstElement);
+                if (!_elements[secondConnections[i]].Contains(firstElement))
+                    _elements[secondConnections[i]].Add(firstElement);
             }
         }
 

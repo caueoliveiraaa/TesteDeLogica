@@ -19,6 +19,8 @@ namespace TesteDeLogica
             networkFirstTest.Query(3, 1);
             networkFirstTest.Connect(3, 2);
             networkFirstTest.Query(3, 2);
+            networkFirstTest.Query(1, 8);
+            networkFirstTest.Query(5, 3);
             networkFirstTest.ShowAllElements();
 
             Network networkSecondTest = new Network(8);
@@ -33,6 +35,8 @@ namespace TesteDeLogica
             networkSecondTest.Query(5, 7);
             networkSecondTest.Connect(8, 3);
             networkSecondTest.Query(3, 8);
+            networkSecondTest.Query(5, 3);
+            networkSecondTest.Query(8, 1);
             networkSecondTest.ShowAllElements();
         }
     }
