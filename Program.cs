@@ -7,14 +7,25 @@ namespace TesteDeLogica
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Program has started.");
+            Network networkFirstIntance = new Network(10);
 
-            var network = new Network(10);
+            networkFirstIntance.Connect(2, 4);
+            networkFirstIntance.Query(2, 4);
+            networkFirstIntance.Connect(2, 8);
+            networkFirstIntance.Query(2, 8);
+            networkFirstIntance.Connect(2, 6);
+            networkFirstIntance.Query(2, 6);
+            networkFirstIntance.Connect(3, 1);
+            networkFirstIntance.Query(3, 1);
+            networkFirstIntance.Connect(3, 2);
+            networkFirstIntance.Query(3, 2);
+            networkFirstIntance.ShowAllElements();
 
-            network.Connect(2, 4);
-            network.Query(2, 4);
+            Network networkSecondIntance = new Network(8);
 
-            Console.WriteLine("Program has ended.");
+            networkSecondIntance.Connect(2, 4);
+            networkSecondIntance.Query(2, 4);
+            networkSecondIntance.ShowAllElements();
         }
     }
 }

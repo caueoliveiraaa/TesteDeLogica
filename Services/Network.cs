@@ -23,14 +23,6 @@ namespace TesteDeLogica.Services
         {
             for (int e = 0; e < _numberOfElements; e++)
                 _elements[e + 1] = new List<int>();
-
-            ShowAllElements();
-        }
-
-        private void ShowAllElements()
-        {
-            foreach (var kvp in _elements)
-                Console.WriteLine($"Element: {kvp.Key}, connections: {string.Join(", ", kvp.Value)}");
         }
 
         private void ValidateElements(List<int> elements)
@@ -42,7 +34,7 @@ namespace TesteDeLogica.Services
             }
         }
 
-        private void ValidateConnection(int firstElement, int secondElement)
+        private void VerifyIfConnectionExists(int firstElement, int secondElement)
         {
             ValidateElements( new List<int>() { firstElement, secondElement } );
 
@@ -52,25 +44,55 @@ namespace TesteDeLogica.Services
 
         private void BridgeConnections(int firstElement, int secondElement)
         {
+            List<int> firstElementConnections = _elements[firstElement];
             
+            for (int i = 0; i < firstElementConnections.Count; i++)
+            {
+                if (!_elements[secondElement].Contains(firstElementConnections[i]))
+                    _elements[secondElement].Add(firstElementConnections[i]);
+
+                if (!_elements[firstElementConnections[i]].Contains(secondElement))
+                    _elements[firstElementConnections[i]].Add(secondElement);
+            }
+
+            List<int> secondElementConnections = _elements[secondElement];
+            
+            for (int i = 0; i < secondElementConnections.Count; i++)
+            {
+                if (!_elements[firstElement].Contains(secondElementConnections[i]))
+                    _elements[firstElement].Add(secondElementConnections[i]);
+
+                if (!_elements[secondElementConnections[i]].Contains(firstElement))
+                    _elements[secondElementConnections[i]].Add(firstElement);
+            }
         }
 
         public void Connect(int firstElement, int secondElement)
         {
-            ValidateConnection(firstElement, secondElement);
+            VerifyIfConnectionExists(firstElement, secondElement);
+            BridgeConnections(firstElement, secondElement);
 
             _elements[firstElement].Add(secondElement);
+            _elements[secondElement].Add(firstElement);
 
-            Console.WriteLine($"The connection between {firstElement} and {secondElement} was created successfully.");
+            Console.WriteLine($"Connect: {firstElement} and {secondElement} = successfully.");
         }
 
         public bool Query(int firstElement, int secondElement)
         {
             ValidateElements( new List<int>() { firstElement, secondElement } );
 
-            Console.WriteLine($"Query: {firstElement} is connected to {secondElement} = {_elements[firstElement].Contains(secondElement)}");
+            bool connectionExists = _elements[firstElement].Contains(secondElement);
 
-            return _elements[firstElement].Contains(secondElement);
+            Console.WriteLine($"Query: {firstElement} and {secondElement} = {connectionExists}.");
+
+            return connectionExists;
+        }
+
+        public void ShowAllElements()
+        {
+            foreach (var keyAndValues in _elements)
+                Console.WriteLine($"Element: {keyAndValues.Key}, connections: {string.Join(", ", keyAndValues.Value)}");
         }
     }
 }
